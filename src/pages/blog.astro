@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+let res = await fetch("https://jsonplaceholder.typicode.com/posts");
+let posts = await res.json();
+---
+
+<Layout>
+	<Fragment slot="main">
+		<h1>Latest Posts</h1>
+
+		{
+			posts.map((post) => {
+				return (
+					<div class="post">
+						<h3>{post.title}</h3>
+						<p>{post.body}</p>
+					</div>
+				);
+			})
+		}
+	</Fragment>
+</Layout>
+
+<style>
+	.post {
+		border-bottom: 2px solid grey;
+	}
+</style>
